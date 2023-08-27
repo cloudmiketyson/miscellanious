@@ -47,12 +47,12 @@ fi
 echo "==========================================="
 echo "Workspace: $workspacename"
 echo "==========================================="
-api_token=""
+api_token="2R5jofWL7kmQmA.atlasv1.nnqbYmXy3HIpul8mZTJJLhvYtxwzuvL6cwPRnjjxiv62IA9Ij2uMVcRZKURVdFs0tXQ"
 os="$(uname -s)"
 case "$os" in
     Linux*)     api_token=$(cat $AGENT_HOMEDIRECTORY/.terraformrc | grep 'token' | sed 's/^.*token\s*=\s*//' | sed 's/"//g');;
     Darwin*)    api_token=$(cat $AGENT_HOMEDIRECTORY/.terraformrc | grep 'token' | sed 's/^.*token *= *//' | sed 's/"//g');;
-    *)          api_token=""
+    *)          api_token="2R5jofWL7kmQmA.atlasv1.nnqbYmXy3HIpul8mZTJJLhvYtxwzuvL6cwPRnjjxiv62IA9Ij2uMVcRZKURVdFs0tXQ"
 esac
 
 [ -z "$api_token" ] && echo "Terraform Token unknown" && exit 1
