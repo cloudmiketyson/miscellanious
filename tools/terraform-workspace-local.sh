@@ -11,6 +11,7 @@ organization=${TF_ORGANIZATION:="pablosspot"}
 terraformapiurl=${TF_API_URL:="https://app.terraform.io/api/v2"}
 terraformversion=${TF_VERSION:=1.0.0}
 AGENT_HOMEDIRECTORY=${AGENT_HOMEDIRECTORY:="$HOME"}
+api_token
 
 [ -z $TF_WORKSPACE ] && echo "TF_WORKSPACE not defined" && exit 1
 
@@ -47,12 +48,12 @@ fi
 echo "==========================================="
 echo "Workspace: $workspacename"
 echo "==========================================="
-api_token="7VwRRl08DtU1Ng.atlasv1.0YkB4qeiaXTrTRpDGOKjyqCYza193aBB81MjsQzIb1KzozkwQHpAgMtvSJZqNfYP9mI"
+api_token=""
 os="$(uname -s)"
 case "$os" in
     Linux*)     api_token=$(cat $AGENT_HOMEDIRECTORY/.terraformrc | grep 'token' | sed 's/^.*token\s*=\s*//' | sed 's/"//g');;
     Darwin*)    api_token=$(cat $AGENT_HOMEDIRECTORY/.terraformrc | grep 'token' | sed 's/^.*token *= *//' | sed 's/"//g');;
-    *)          api_token="7VwRRl08DtU1Ng.atlasv1.0YkB4qeiaXTrTRpDGOKjyqCYza193aBB81MjsQzIb1KzozkwQHpAgMtvSJZqNfYP9mI"
+    *)          api_token=""
 esac
 
 [ -z "$api_token" ] && echo "Terraform Token unknown" && exit 1
